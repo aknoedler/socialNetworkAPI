@@ -7,7 +7,7 @@ function formatDate(date) {
 const reactionSchema = new mongoose.Schema(
     {
         reactionID: {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             default: () => new Types.ObjectId(),
         },
         reactionBody: {

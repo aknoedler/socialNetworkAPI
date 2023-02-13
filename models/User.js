@@ -17,14 +17,14 @@ const userSchema = new mongoose.Schema(
                     return /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(v)
                 }
             },
-            thoughts: [
-                {
-                    type: Schema.Types.ObjectId,
-                    ref: 'thought'
-                }
-            ],
-            friends: [userSchema]
-        }
+        },
+        thoughts: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'thought'
+            }
+        ],
+        friends: [this]
     },
     {
         toJSON: {
