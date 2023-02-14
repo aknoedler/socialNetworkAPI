@@ -44,11 +44,11 @@ module.exports = {
                 if (req.body.username != thought.username) {
                     User.findOneAndUpdate(
                         { username: req.body.username },
-                        { $push: thought._id }
+                        { $push: {thoughts: thought._id }}
                     );
                     User.findOneAndUpdate(
                         { username: thought.username },
-                        { $pull: thought._id }
+                        { $pull: {thoughts: thought._id }}
                     )
                 }
             }
@@ -70,9 +70,10 @@ module.exports = {
                 } else {
                     User.findOneAndUpdate(
                         { username: thought.username },
-                        { $pull: thought._id }
-                    );
-                    res.json({ message: 'Thought deleted!' });
+                        { $pull: {thoughts: thought._id }}
+                    ).then(()=> {
+                        res.json({ message: 'Thought deleted!' })
+                    })
                 }
             })
             .catch((err) => res.status(500).json(err));
