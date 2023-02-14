@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 function formatDate(date) {
-    return date.toDateString();
+    return `${date.toDateString()} at ${date.toLocaleTimeString()}`;
 }
 
 const reactionSchema = new mongoose.Schema(
@@ -25,6 +25,12 @@ const reactionSchema = new mongoose.Schema(
             default: Date.now,
             get: formatDate
         },
+    },
+    {
+        toJSON: {
+            getters: true
+        },
+        id: false,
     }
 )
 

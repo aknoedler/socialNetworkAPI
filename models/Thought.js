@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const reactionSchema = require('./Reaction.js');
 
 function formatDate(date) {
-    return date.toDateString();
+    return `${date.toDateString()} at ${date.toLocaleTimeString()}`;
 }
 
 const thoughtSchema = new mongoose.Schema(
@@ -27,6 +27,7 @@ const thoughtSchema = new mongoose.Schema(
     {
         toJSON: {
             virtuals: true,
+            getters: true
         },
         id: false,
     }
